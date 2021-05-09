@@ -9,7 +9,6 @@ import { BudgetService } from '../services/budget.service';
 export class BudgetGridComponent implements OnInit {
 
   private monthlyTransactions: any;
-  transactionsJson: string | undefined;
   isLoading: boolean = true;
   columnDefs: any[] = [{
     field: "category",
@@ -28,7 +27,6 @@ export class BudgetGridComponent implements OnInit {
     this.budgetService.listMonthlyTransactions().subscribe(
       data => {
         this.monthlyTransactions = data;
-        this.transactionsJson = JSON.stringify(this.monthlyTransactions);
         this.renderGrid();
       },
       err => {
@@ -47,21 +45,28 @@ export class BudgetGridComponent implements OnInit {
   }
 
   printData() {
-    console.log(JSON.stringify(this.rowData))
-    console.log("Categories:")
+    console.log(JSON.stringify(this.rowData, null, 2))
+    // console.log("Categories:")
     this.rowData.forEach((rowData: { category: string; }) => {
-      console.log(rowData.category + "\n")
+      // console.log(rowData.category + "\n")
     })
     console.log("Avg: ")
     this.rowData.forEach((row: { Average: string; }) => {
-      console.log(row.Average + "\n")
+      // console.log(row.Average + "\n")
     })
   }
 
   transposeData(data: any[]) {
     let transposedData: any[] = [];
     let keys = Object.keys(data[0])
-    for (let i = 3; i < keys.length; i++) {
+    for (let i = 4; i < keys.length-1; i++) {
+      if (keys[i] == "inProgress") {
+        let inProgressIndex = i;
+        continue;
+      }
+      if (keys[i] == "isDefault") {
+        let isDefaultIndex = i;
+      }
       transposedData.push({
         category: keys[i]
       });
@@ -75,9 +80,9 @@ export class BudgetGridComponent implements OnInit {
         return;
       }
       this.addToHeaders(headerName);
-      for (let i = 3; i < values.length; i++) {
-        transposedData[i - 3] = {
-          ...transposedData[i - 3],
+      for (let i = 4; i < values.length-1; i++) {
+        transposedData[i - 4] = {
+          ...transposedData[i - 4],
           [headerName]: values[i]
         };
       }
