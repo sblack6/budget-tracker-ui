@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { BudgetGridComponent } from './budget-grid/budget-grid.component';
 import { BudgetService } from './services/budget.service';
 import { AgGridModule } from 'ag-grid-angular';
-import { ModifyBudgetComponent } from './src/app/components/modify-budget.component';
+import { ModifyBudgetComponent } from './components/modify-budget.component';
 
 @NgModule({
   declarations: [
