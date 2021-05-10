@@ -15,6 +15,7 @@ export class BudgetGridComponent implements OnInit {
     pinned: "left"
   }];
   rowData: any;
+  inProgress: any;
 
   constructor(private budgetService: BudgetService) { }
 
@@ -59,14 +60,7 @@ export class BudgetGridComponent implements OnInit {
   transposeData(data: any[]) {
     let transposedData: any[] = [];
     let keys = Object.keys(data[0])
-    for (let i = 4; i < keys.length-1; i++) {
-      if (keys[i] == "inProgress") {
-        let inProgressIndex = i;
-        continue;
-      }
-      if (keys[i] == "isDefault") {
-        let isDefaultIndex = i;
-      }
+    for (let i = 3; i < keys.length-1; i++) {
       transposedData.push({
         category: keys[i]
       });
@@ -75,19 +69,19 @@ export class BudgetGridComponent implements OnInit {
       let values = Object.values(monthlyTransactionLog);
       let type = values[1];
       let month = values[2];
-      let headerName: string = this.valueToString(month) + "\n" + this.valueToString(type);
+      let headerName: string = this.valueToString(month) + " " + this.valueToString(type);
       if (headerName.includes("TEST")) {
         return;
       }
       this.addToHeaders(headerName);
-      for (let i = 4; i < values.length-1; i++) {
-        transposedData[i - 4] = {
-          ...transposedData[i - 4],
+      for (let i = 3; i < values.length-1; i++) {
+        transposedData[i - 3] = {
+          ...transposedData[i - 3],
           [headerName]: values[i]
         };
       }
     });
-    for (let i = 0; i < transposedData.length; i++) {
+    for (let i = 3; i < transposedData.length-1; i++) {
       let row = transposedData[i];
       this.columnDefs.forEach(header => {
         if (Object.keys(row).indexOf(header.field) == -1) {
@@ -98,6 +92,8 @@ export class BudgetGridComponent implements OnInit {
         }
       })
     }
+    this.inProgress = transposedData[0];
+    transposedData.splice(0, 1)
     return transposedData;
   }
 
@@ -173,6 +169,9 @@ export class BudgetGridComponent implements OnInit {
       let transactionsTotal: number = 0;
       Object.entries(row).forEach(([key, value]) => {
         if (key == "category") return;
+        if (this.inProgress[key]) {
+          return;
+        }
         if (key.includes("TRANSACTION")) {
           numTransactions++;
           transactionsTotal += Number.parseFloat(JSON.stringify(value));
