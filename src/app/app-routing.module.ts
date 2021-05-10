@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BudgetGridComponent } from './budget-grid/budget-grid.component';
+import { BudgetHomeComponent } from './components/budget-home/budget-home.component';
 
 const routes: Routes = [
-  { path: "", component: BudgetGridComponent }
+  { path: "", component: BudgetHomeComponent }
 ];
 
 @NgModule({

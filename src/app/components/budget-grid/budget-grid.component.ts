@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BudgetService } from '../services/budget.service';
+import { BudgetService } from '../../services/budget.service';
 
 @Component({
-  selector: 'app-budget-grid',
+  selector: 'budget-grid',
   templateUrl: './budget-grid.component.html',
   styleUrls: ['./budget-grid.component.css']
 })
