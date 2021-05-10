@@ -42,19 +42,6 @@ export class BudgetGridComponent implements OnInit {
     this.rowData = this.transposeData(this.monthlyTransactions);
     this.organizeHeaders();
     this.isLoading = false;
-    this.printData();
-  }
-
-  printData() {
-    console.log(JSON.stringify(this.rowData, null, 2))
-    // console.log("Categories:")
-    this.rowData.forEach((rowData: { category: string; }) => {
-      // console.log(rowData.category + "\n")
-    })
-    console.log("Avg: ")
-    this.rowData.forEach((row: { Average: string; }) => {
-      // console.log(row.Average + "\n")
-    })
   }
 
   transposeData(data: any[]) {
