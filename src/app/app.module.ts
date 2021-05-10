@@ -19,6 +19,7 @@ import { ModifyBudgetComponent } from './components/modify-budget.component';
 import { BudgetHomeComponent } from './components/budget-home/budget-home.component';
 import { UploadTransactionsComponent } from './components/upload-transactions/upload-transactions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditBudgetComponent } from './components/edit-budget/edit-budget.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BudgetGridComponent,
     ModifyBudgetComponent,
     BudgetHomeComponent,
-    UploadTransactionsComponent
+    UploadTransactionsComponent,
+    EditBudgetComponent
   ],
   imports: [
     BrowserModule,
