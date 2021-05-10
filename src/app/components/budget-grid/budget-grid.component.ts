@@ -23,6 +23,16 @@ export class BudgetGridComponent implements OnInit {
     this.listMonthlyTransactions();
   }
 
+  public update() {
+    console.log("Update")
+    this.rowData = [];
+    this.columnDefs = [{
+      field: "category",
+      pinned: "left"
+    }];
+    this.listMonthlyTransactions();
+  }
+
   listMonthlyTransactions() {
     this.isLoading = true;
     this.budgetService.listMonthlyTransactions().subscribe(
@@ -95,8 +105,10 @@ export class BudgetGridComponent implements OnInit {
           let budgetValue = params.node.data[header.replace("TRANSACTIONS", "BUDGET")];
           if (Math.abs(params.value) > Math.abs(budgetValue)) {
             return {backgroundColor: '#FFB798'}
-          } else {
+          } else if (Math.abs(params.value) < Math.abs(budgetValue)) {
             return {backgroundColor: '#95F7A7'}
+          } else {
+            return {backgroundColor: '#FFFFFF'}
           }
         } else {
           return;
