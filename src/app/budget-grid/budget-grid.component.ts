@@ -70,9 +70,6 @@ export class BudgetGridComponent implements OnInit {
       let type = values[1];
       let month = values[2];
       let headerName: string = this.valueToString(month) + " " + this.valueToString(type);
-      if (headerName.includes("TEST")) {
-        return;
-      }
       this.addToHeaders(headerName);
       for (let i = 3; i < values.length-1; i++) {
         transposedData[i - 3] = {
