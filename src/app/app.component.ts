@@ -8,13 +8,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent {
   links = [
-    { title: 'Home', fragment: 'home' },
-    { title: 'Budget Home', fragment: 'budget' }
+    { title: 'Home', path: 'home' },
+    { title: 'Budget Home', path: 'budget' }
   ];
 
   constructor(public route: ActivatedRoute) {
-    console.log(`Route: ${JSON.stringify(route.url)}`)
-    
   }
 
 }
