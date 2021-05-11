@@ -1,4 +1,8 @@
-<div style="text-align: center;">
-  <h1>Budget Tracker</h1>
-</div>
+<nav class='navbar navbar-expand navbar-light bg-light'>
+  <a class='navbar-brand'>Budget Tracker</a>
+  <ul class='nav navbar-nav'>
+    <li><a [routerLink]="['/home']">Home</a></li>
+    <li><a [routerLink]="['/budget']">Budget Home</a></li>
+  </ul>
+</nav>
 <router-outlet></router-outlet>

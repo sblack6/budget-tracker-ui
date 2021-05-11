@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditBudgetComponent } from './components/edit-budget/edit-budget.component';
 import { BudgetDetailComponent } from './components/budget-detail/budget-detail.component';
 import { BudgetListComponent } from './components/budget-list/budget-list.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BudgetListComponent } from './components/budget-list/budget-list.compon
     UploadTransactionsComponent,
     EditBudgetComponent,
     BudgetDetailComponent,
-    BudgetListComponent
+    BudgetListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
