@@ -1,8 +1,8 @@
-<nav class='navbar navbar-expand navbar-light bg-light'>
-  <a class='navbar-brand'>Budget Tracker</a>
-  <ul class='nav navbar-nav'>
-    <li><a [routerLink]="['/home']">Home</a></li>
-    <li><a [routerLink]="['/budget']">Budget Home</a></li>
-  </ul>
-</nav>
+<!-- Nav bar -->
+<ul ngbNav [activeId]="route.url | async" class="nav-tabs">
+  <li [ngbNavItem]="link" *ngFor="let link of links">
+    <a ngbNavLink [routerLink]="link.fragment">{{ link.title }}</a>
+  </li>
+</ul>
+
 <router-outlet></router-outlet>

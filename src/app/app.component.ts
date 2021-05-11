@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'budget-tracker-app';
+  links = [
+    { title: 'Home', fragment: 'home' },
+    { title: 'Budget Home', fragment: 'budget' }
+  ];
+
+  constructor(public route: ActivatedRoute) {
+    console.log(`Route: ${JSON.stringify(route.url)}`)
+    
+  }
+
 }
