@@ -22,6 +22,7 @@ import { EditBudgetComponent } from './components/edit-budget/edit-budget.compon
 import { BudgetDetailComponent } from './components/budget-detail/budget-detail.component';
 import { BudgetListComponent } from './components/budget-list/budget-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { HeaderEditComponent } from './components/header/header-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomeComponent } from './components/home/home.component';
     EditBudgetComponent,
     BudgetDetailComponent,
     BudgetListComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderEditComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import { HomeComponent } from './components/home/home.component';
     HttpClientModule,
     CommonModule,
     NgbModule,
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([HeaderEditComponent]),
     BrowserAnimationsModule,
     MatButtonModule,
     MatSelectModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetService } from '../../services/budget.service';
+import { HeaderEditComponent } from '../header/header-edit.component';
 
 @Component({
   selector: 'budget-grid',
@@ -16,11 +17,19 @@ export class BudgetGridComponent implements OnInit {
   }];
   rowData: any;
   inProgress: any;
+  frameworkComponents =
+    {
+      'headerEditComponent': HeaderEditComponent
+    }
 
   constructor(private budgetService: BudgetService) { }
 
   ngOnInit(): void {
     this.listMonthlyTransactions();
+  }
+
+  editBudget() {
+    console.log("Edit budget clicked")
   }
 
   public update() {
@@ -114,6 +123,7 @@ export class BudgetGridComponent implements OnInit {
           return;
         }
       },
+      headerComponent: 'headerEditComponent'
     });
   }
 
