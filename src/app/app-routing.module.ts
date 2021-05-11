@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'budget', component: BudgetHomeComponent },
   { path: 'budget/:type/:date', component: BudgetListComponent },
   { path: 'budget/edit/:type/:date', component: EditBudgetComponent },
-  { path: '', redirectTo: 'budget', pathMatch: 'full' }
+  { path: '', redirectTo: 'budget', pathMatch: 'full' },
+  { path: '**', redirectTo: 'budget', pathMatch: 'full' }
 ];
 
 @NgModule({
