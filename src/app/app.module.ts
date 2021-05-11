@@ -15,20 +15,22 @@ import { AppComponent } from './app.component';
 import { BudgetGridComponent } from './components/budget-grid/budget-grid.component';
 import { BudgetService } from './services/budget.service';
 import { AgGridModule } from 'ag-grid-angular';
-import { ModifyBudgetComponent } from './components/modify-budget.component';
 import { BudgetHomeComponent } from './components/budget-home/budget-home.component';
 import { UploadTransactionsComponent } from './components/upload-transactions/upload-transactions.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditBudgetComponent } from './components/edit-budget/edit-budget.component';
+import { BudgetDetailComponent } from './components/budget-detail/budget-detail.component';
+import { BudgetListComponent } from './components/budget-list/budget-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BudgetGridComponent,
-    ModifyBudgetComponent,
     BudgetHomeComponent,
     UploadTransactionsComponent,
-    EditBudgetComponent
+    EditBudgetComponent,
+    BudgetDetailComponent,
+    BudgetListComponent
   ],
   imports: [
     BrowserModule,
