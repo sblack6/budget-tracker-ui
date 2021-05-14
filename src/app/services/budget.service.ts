@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, Subscription } from 'rxjs';
+import { MonthlySpending } from '../model/monthly-spending';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application-json'})
@@ -22,6 +23,10 @@ export class BudgetService {
     let formData: FormData = new FormData();
     formData.append("file", file);
     return this.http.post(`/server/api/v1/transactions/upload-transactions?type=${type}&inProgress=${inProgress}&source=${source}`, formData)
+  }
+
+  put(object: MonthlySpending) {
+    return this.http.put(`/server/api/v1/transactions/${object.id}`, object)
   }
 
   newBudgetFromDefault(date: string, inProgress: boolean): Observable<any> {
