@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, throttleTime } from 'rxjs/operators';
-import { MonthlySpending, BUDGET_NUMERICAL_ENTRIES } from 'src/app/model/monthly-spending';
+import { MonthlySpending, BUDGET_NUMERIC_ENTRIES } from 'src/app/model/monthly-spending';
 import { BudgetService } from 'src/app/services/budget.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class EditBudgetComponent implements OnInit {
 
   type: any;
   date: any;
-  budgetFields = BUDGET_NUMERICAL_ENTRIES
+  budgetFields = BUDGET_NUMERIC_ENTRIES
   budgetData!: MonthlySpending;
   budgetForm!: FormGroup;
 
