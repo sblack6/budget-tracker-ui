@@ -33,7 +33,7 @@ export interface MonthlySpending {
     total: number,
 }
 
-export const BUDGET_NUMERICAL_ENTRIES = [
+export const BUDGET_NUMERIC_ENTRIES = [
     {
         field: 'rent',
         displayName: 'Rent'
@@ -158,7 +158,7 @@ export const ALL_BUDGET_FIELDS = [
         displayName: 'In Progress?'
     },
     {
-        field: 'isDefault',
+        field: 'default',
         displayName: 'Default Budget?'
     },
     {

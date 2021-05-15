@@ -1,30 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MonthlySpending } from 'src/app/model/monthly-spending';
-import { BudgetService } from 'src/app/services/budget.service';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ALL_BUDGET_FIELDS, MonthlySpending } from 'src/app/model/monthly-spending';
 
 @Component({
   selector: 'app-budget-detail',
   templateUrl: './budget-detail.component.html',
   styleUrls: ['./budget-detail.component.css']
 })
-export class BudgetDetailComponent implements OnInit {
+export class BudgetDetailComponent implements OnChanges {
 
-  type: any;
-  date: any;
-  budgetData!: MonthlySpending[];
+  @Input() budgetData!: MonthlySpending
+  displayData!: any[]
+  budgetFields = ALL_BUDGET_FIELDS
 
-  constructor(private route: ActivatedRoute, private budgetService: BudgetService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.type = this.route.snapshot.paramMap.get('type');
-    this.date = this.route.snapshot.paramMap.get('date');
-    console.log(`Budget edit type: ${this.type}, date: ${this.date}`)
-    this.budgetService.search(this.type, this.date).subscribe(
-      data => {
-        this.budgetData = data;
+  ngOnChanges(): void {
+    this.displayData = this.budgetFields
+    Object.entries(this.budgetData).forEach( ([key, value]) => {
+      let index = this.displayData.findIndex(item => item.field == key)
+      this.displayData[index] = {
+        ...this.displayData[index],
+        value: value
       }
-    )
+    })
+    console.log("Display data:\n" + JSON.stringify(this.displayData, null, 2))
   }
 
 }

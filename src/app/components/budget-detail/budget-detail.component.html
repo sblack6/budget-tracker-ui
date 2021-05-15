@@ -1,1 +1,8 @@
-<p>budget-detail works!</p>
+<ng-container *ngIf="budgetData">
+    <div class="form-group row mb-2" *ngFor="let item of displayData" style="padding-left: 36px;">
+        <label class="col-md-2 col-form-label">{{item.displayName}}</label>
+        <div class="col-md-2">
+            {{item.value}}
+        </div>
+    </div>
+</ng-container>
