@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ALL_BUDGET_FIELDS, MonthlySpending } from 'src/app/model/monthly-spending';
 
 @Component({
@@ -6,15 +6,27 @@ import { ALL_BUDGET_FIELDS, MonthlySpending } from 'src/app/model/monthly-spendi
   templateUrl: './budget-detail.component.html',
   styleUrls: ['./budget-detail.component.css']
 })
-export class BudgetDetailComponent implements OnChanges {
+export class BudgetDetailComponent {
 
-  @Input() budgetData!: MonthlySpending
+  _budgetData!: MonthlySpending
+  @Input() set budgetData(value: MonthlySpending) {
+    if (!value) {
+      return
+    }
+    this._budgetData = value;
+    this.initDisplayData()
+  }
+
+  get budgetData() {
+    return this._budgetData
+  }
+
   displayData!: any[]
   budgetFields = ALL_BUDGET_FIELDS
 
   constructor() { }
 
-  ngOnChanges(): void {
+  initDisplayData(): void {
     this.displayData = this.budgetFields
     Object.entries(this.budgetData).forEach( ([key, value]) => {
       let index = this.displayData.findIndex(item => item.field == key)
@@ -23,7 +35,6 @@ export class BudgetDetailComponent implements OnChanges {
         value: value
       }
     })
-    console.log("Display data:\n" + JSON.stringify(this.displayData, null, 2))
   }
 
 }

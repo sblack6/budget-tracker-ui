@@ -35,7 +35,6 @@ export class BudgetHomeComponent implements OnInit {
   displayDefaultBudget() {
     this.budgetService.getDefaultBudget().subscribe(
       data => {
-        console.log(`Got default budget: ${JSON.stringify(data, null, 2)}`)
         this.defaultBudget = data
       },
       error => console.log(`Error getting default budget: ${error}`)
