@@ -141,5 +141,9 @@ export const BUDGET_ENTRIES = [
     {
         field: 'automotive',
         displayName: 'Automotive'
+    },
+    {
+        field: 'total',
+        displayName: 'Total'
     }
 ]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, throttleTime } from 'rxjs/operators';
 import { MonthlySpending, BUDGET_ENTRIES } from 'src/app/model/monthly-spending';
 import { BudgetService } from 'src/app/services/budget.service';
 
@@ -62,10 +63,33 @@ export class EditBudgetComponent implements OnInit {
       uber: [this.budgetData.uber],
       charitable_giving: [this.budgetData.charitable_giving],
       mortgage: [this.budgetData.mortgage],
+      total: [{value: this.budgetData.total, disabled: true}]
+    })
+
+    this.budgetForm.valueChanges.pipe(
+      debounceTime(1000),
+      throttleTime(1000),
+      distinctUntilChanged()
+    ).subscribe(data => {
+      this.updateTotal(data)
     })
   }
 
+  updateTotal(data: Object) {
+    let total = 0
+    Object.values(data).forEach(value => {
+      if(!isNaN(value)) {
+        total += value
+      }
+    })
+    console.log('Before total: ' + JSON.stringify(this.budgetForm.get('total')?.value, null, 2))
+    this.budgetForm.get('total')?.patchValue( total, {emitEvent: false} )
+    console.log('After total: ' + JSON.stringify(this.budgetForm.get('total')?.value, null, 2))
+
+  }
+
   save() {
+    console.log("Before update: " + JSON.stringify(this.budgetData, null, 2))
     const updatedData: MonthlySpending = {
       ...this.budgetData,
       ...this.budgetForm.value
