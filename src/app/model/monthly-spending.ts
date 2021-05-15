@@ -35,14 +35,6 @@ export interface MonthlySpending {
 
 export const BUDGET_ENTRIES = [
     {
-        field: 'date',
-        displayName: 'Month'
-    },
-    {
-        field: 'type',
-        displayName: 'Type'
-    },
-    {
         field: 'rent',
         displayName: 'Rent'
     },
