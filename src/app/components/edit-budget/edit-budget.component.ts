@@ -24,7 +24,6 @@ export class EditBudgetComponent implements OnInit {
   ngOnInit(): void {
     this.type = this.route.snapshot.paramMap.get('type');
     this.date = this.route.snapshot.paramMap.get('date');
-    console.log(`Budget edit type: ${this.type}, date: ${this.date}`)
     this.budgetService.search(this.type, this.date).subscribe(
       data => {
         this.budgetData = data[0]
@@ -82,19 +81,14 @@ export class EditBudgetComponent implements OnInit {
         total += value
       }
     })
-    console.log('Before total: ' + JSON.stringify(this.budgetForm.get('total')?.value, null, 2))
     this.budgetForm.get('total')?.patchValue( total, {emitEvent: false} )
-    console.log('After total: ' + JSON.stringify(this.budgetForm.get('total')?.value, null, 2))
-
   }
 
   save() {
-    console.log("Before update: " + JSON.stringify(this.budgetData, null, 2))
     const updatedData: MonthlySpending = {
       ...this.budgetData,
       ...this.budgetForm.value
     }
-    console.log("Updated data:\n" + JSON.stringify(updatedData, null, 2))
     this.budgetService.put(updatedData).subscribe(
       data => {
         console.log("Success! Updated data:\n" + JSON.stringify(data, null, 2))
