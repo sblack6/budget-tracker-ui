@@ -33,7 +33,7 @@ export interface MonthlySpending {
     total: number,
 }
 
-export const BUDGET_ENTRIES = [
+export const BUDGET_NUMERICAL_ENTRIES = [
     {
         field: 'rent',
         displayName: 'Rent'
