@@ -1,3 +1,9 @@
+<ng-container *ngIf="isBudget">
+    <button mat-stroked-button  color="primary" (click)="makeBudgetDefault()"
+        title="Update this budget's entries to match the default budget">
+        Match to the Default Budget
+      </button>
+</ng-container>
 <div class="card">
     <div class="card-header">
         <p>Date: {{date}}, Type: {{type}}</p>

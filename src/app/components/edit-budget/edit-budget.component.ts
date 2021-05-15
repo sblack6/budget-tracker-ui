@@ -15,6 +15,7 @@ export class EditBudgetComponent implements OnInit {
 
   type: any;
   date: any;
+  isBudget!: boolean
   isDefault: boolean = false
   budgetFields = BUDGET_NUMERIC_ENTRIES
   budgetData!: any;
@@ -26,6 +27,7 @@ export class EditBudgetComponent implements OnInit {
   ngOnInit(): void {
     this.type = this.route.snapshot.paramMap.get('type');
     this.date = this.route.snapshot.paramMap.get('date');
+    this.isBudget = this.type === BUDGET
     if (this.date === DEFAULT_BUDGET_DATE && this.type === BUDGET) {
       this.isDefault = true
     }
@@ -102,6 +104,19 @@ export class EditBudgetComponent implements OnInit {
       }
     })
     this.budgetForm.get('total')?.patchValue( total, {emitEvent: false} )
+  }
+
+  makeBudgetDefault() {
+    this.budgetService.getDefaultBudget().subscribe(data => {
+        this.budgetData = {
+          ...data,
+          date: this.date,
+          default: false,
+          inProgress: this.budgetData.inProgress
+        }
+        this.initForm()
+        this.budgetForm.markAsDirty()
+    })
   }
 
   save() {
