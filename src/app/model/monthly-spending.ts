@@ -39,76 +39,80 @@ export const BUDGET_NUMERICAL_ENTRIES = [
         displayName: 'Rent'
     },
     {
-        field: 'groceries',
-        displayName: 'Groceries'
-    },
-    {
-        field: 'travel',
-        displayName: 'Travel'
-    },
-    {
-        field: 'restaurants',
-        displayName: 'Restaurants'
-    },
-    {
-        field: 'loans',
-        displayName: 'Loans'
-    },
-    {
-        field: 'clothing',
-        displayName: 'Clothing'
-    },
-    {
-        field: 'general_merchandise',
-        displayName: 'General Merchandise'
-    },
-    {
-        field: 'home_improvement',
-        displayName: 'Home Improvement'
-    },
-    {
-        field: 'hobbies',
-        displayName: 'Hobbies'
-    },
-    {
-        field: 'cable',
-        displayName: 'Cable'
-    },
-    {
-        field: 'entertainment',
-        displayName: 'Entertainment'
-    },
-    {
-        field: 'gifts',
-        displayName: 'Gifts'
-    },
-    {
-        field: 'utilities',
-        displayName: 'Utilities'
+        field: 'automotive',
+        displayName: 'Automotive'
     },
     {
         field: 'atm',
         displayName: 'Cash'
     },
     {
+        field: 'cable',
+        displayName: 'Cable'
+    },
+    {
+        field: 'charitable_giving',
+        displayName: 'Charitable Giving'
+    },
+    {
+        field: 'clothing',
+        displayName: 'Clothing'
+    },
+    {
+        field: 'entertainment',
+        displayName: 'Entertainment'
+    },
+    {
+        field: 'food_delivery',
+        displayName: 'Food Delivery'
+    },
+    {
         field: 'gas',
         displayName: 'Gas'
     },
     {
-        field: 'healthcare',
-        displayName: 'Healthcare'
+        field: 'general_merchandise',
+        displayName: 'General Merchandise'
     },
     {
-        field: 'subscriptions',
-        displayName: 'Subscriptions'
+        field: 'gifts',
+        displayName: 'Gifts'
+    },
+    {
+        field: 'groceries',
+        displayName: 'Groceries'
     },
     {
         field: 'gym',
         displayName: 'Gym'
     },
     {
-        field: 'food_delivery',
-        displayName: 'Food Delivery'
+        field: 'healthcare',
+        displayName: 'Healthcare'
+    },
+    {
+        field: 'hobbies',
+        displayName: 'Hobbies'
+    },
+    {
+        field: 'home_improvement',
+        displayName: 'Home Improvement'
+    },
+    {
+        field: 'loans',
+        displayName: 'Loans'
+    },
+    {
+        field: 'mortgage',
+        displayName: 'Mortgage'
+    },
+    {
+        field: 'restaurants',
+        displayName: 'Restaurants'
+    },
+    {
+        field: 'subscriptions',
+        displayName: 'Subscriptions'
     },
     {
         field: 'taxes',
@@ -119,20 +123,143 @@ export const BUDGET_NUMERICAL_ENTRIES = [
         displayName: 'Transportation'
     },
     {
+        field: 'travel',
+        displayName: 'Travel'
+    },
+    {
         field: 'uber',
         displayName: 'Uber'
+    },
+    {
+        field: 'utilities',
+        displayName: 'Utilities'
+    },
+    {
+        field: 'total',
+        displayName: 'Total'
+    }
+]
+
+export const ALL_BUDGET_FIELDS = [
+    {
+        field: 'id',
+        displayName: 'ID'
+    },
+    {
+        field: 'date',
+        displayName: 'Month'
+    },
+    {
+        field: 'type',
+        displayName: 'Type'
+    },
+    {
+        field: 'inProgress',
+        displayName: 'In Progress?'
+    },
+    {
+        field: 'isDefault',
+        displayName: 'Default Budget?'
+    },
+    {
+        field: 'rent',
+        displayName: 'Rent'
+    },
+    {
+        field: 'automotive',
+        displayName: 'Automotive'
+    },
+    {
+        field: 'atm',
+        displayName: 'Cash'
+    },
+    {
+        field: 'cable',
+        displayName: 'Cable'
     },
     {
         field: 'charitable_giving',
         displayName: 'Charitable Giving'
     },
     {
+        field: 'clothing',
+        displayName: 'Clothing'
+    },
+    {
+        field: 'entertainment',
+        displayName: 'Entertainment'
+    },
+    {
+        field: 'food_delivery',
+        displayName: 'Food Delivery'
+    },
+    {
+        field: 'gas',
+        displayName: 'Gas'
+    },
+    {
+        field: 'general_merchandise',
+        displayName: 'General Merchandise'
+    },
+    {
+        field: 'gifts',
+        displayName: 'Gifts'
+    },
+    {
+        field: 'groceries',
+        displayName: 'Groceries'
+    },
+    {
+        field: 'gym',
+        displayName: 'Gym'
+    },
+    {
+        field: 'healthcare',
+        displayName: 'Healthcare'
+    },
+    {
+        field: 'hobbies',
+        displayName: 'Hobbies'
+    },
+    {
+        field: 'home_improvement',
+        displayName: 'Home Improvement'
+    },
+    {
+        field: 'loans',
+        displayName: 'Loans'
+    },
+    {
         field: 'mortgage',
         displayName: 'Mortgage'
     },
     {
-        field: 'automotive',
-        displayName: 'Automotive'
+        field: 'restaurants',
+        displayName: 'Restaurants'
+    },
+    {
+        field: 'subscriptions',
+        displayName: 'Subscriptions'
+    },
+    {
+        field: 'taxes',
+        displayName: 'Taxes'
+    },
+    {
+        field: 'transportation',
+        displayName: 'Transportation'
+    },
+    {
+        field: 'travel',
+        displayName: 'Travel'
+    },
+    {
+        field: 'uber',
+        displayName: 'Uber'
+    },
+    {
+        field: 'utilities',
+        displayName: 'Utilities'
     },
     {
         field: 'total',
