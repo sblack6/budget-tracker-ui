@@ -162,8 +162,10 @@ export class BudgetGridComponent implements OnInit {
       cellStyle: (params: any) => {
         if (params.value > 0) {
           return {backgroundColor: '#95F7A7'}
-        } else {
+        } else if (params.value < 0) {
           return {backgroundColor: '#FFB798'}
+        } else {
+          return {backgroundColor: '#FFFFFF'}
         }
       }
     });
