@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UploadTransactionsComponent } from '../upload-transactions/upload-transactions.component';
-import { SUBMIT } from '../../model/constants'
+import { BUDGET, DEFAULT_BUDGET_DATE, SUBMIT } from '../../model/constants'
 import { BudgetGridComponent } from '../budget-grid/budget-grid.component';
 import { BudgetService } from 'src/app/services/budget.service';
-import { MonthlySpending } from 'src/app/model/monthly-spending';
-import { MonthViewModel } from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-view-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-budget-home',
@@ -17,7 +16,7 @@ export class BudgetHomeComponent implements OnInit {
   @ViewChild(BudgetGridComponent) budgetGrid!: BudgetGridComponent;
   defaultBudget: any
 
-  constructor(private modalService: NgbModal, private budgetService: BudgetService) { }
+  constructor(private modalService: NgbModal, private budgetService: BudgetService, private router: Router) { }
 
   ngOnInit(): void { 
     this.displayDefaultBudget()
@@ -39,5 +38,9 @@ export class BudgetHomeComponent implements OnInit {
       },
       error => console.log(`Error getting default budget: ${error}`)
     )
+ }
+
+ editDefaultBudget() {
+  this.router.navigate(['/budget/edit', BUDGET, DEFAULT_BUDGET_DATE])
  }
 }

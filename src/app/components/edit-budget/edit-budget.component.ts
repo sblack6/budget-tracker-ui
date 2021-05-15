@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, throttleTime } from 'rxjs/operators';
+import { BUDGET, DEFAULT_BUDGET_DATE, EMPTY_DEFAULT_BUDGET } from 'src/app/model/constants';
 import { MonthlySpending, BUDGET_NUMERIC_ENTRIES } from 'src/app/model/monthly-spending';
 import { BudgetService } from 'src/app/services/budget.service';
 
@@ -14,8 +15,9 @@ export class EditBudgetComponent implements OnInit {
 
   type: any;
   date: any;
+  isDefault: boolean = false
   budgetFields = BUDGET_NUMERIC_ENTRIES
-  budgetData!: MonthlySpending;
+  budgetData!: any;
   budgetForm!: FormGroup;
 
   constructor(private route: ActivatedRoute, private budgetService: BudgetService, private formBuilder: FormBuilder,
@@ -24,12 +26,30 @@ export class EditBudgetComponent implements OnInit {
   ngOnInit(): void {
     this.type = this.route.snapshot.paramMap.get('type');
     this.date = this.route.snapshot.paramMap.get('date');
-    this.budgetService.search(this.type, this.date).subscribe(
-      data => {
-        this.budgetData = data[0]
-        this.initForm()
-      }
-    )
+    if (this.date === DEFAULT_BUDGET_DATE && this.type === BUDGET) {
+      this.isDefault = true
+    }
+    if (this.isDefault) {
+      this.budgetService.getDefaultBudget().subscribe(
+        data => {
+          if (data) {
+            this.budgetData = data 
+          } else {
+            this.budgetData = EMPTY_DEFAULT_BUDGET
+          }
+          this.initForm()
+        },
+        error => alert(`Error getting default budget!\n${error}`)
+      )
+    } else {
+      this.budgetService.search(this.type, this.date).subscribe(
+        data => {
+          this.budgetData = data[0]
+          this.initForm()
+        },
+        error => alert(`Error getting budget for type=${this.type}, date=${this.date}!\n${error}`)
+      )
+    }
   }
 
   initForm() {
@@ -89,14 +109,25 @@ export class EditBudgetComponent implements OnInit {
       ...this.budgetData,
       ...this.budgetForm.value
     }
-    this.budgetService.put(updatedData).subscribe(
-      data => {
-        console.log("Success! Updated data:\n" + JSON.stringify(data, null, 2))
-        this.budgetForm.reset()
-        this.router.navigate(['/budget'])
-      },
-      error => console.log("Error updating data: " + JSON.stringify(error)) 
-    )
+    if (this.isDefault) {
+      this.budgetService.setDefaultBudget(updatedData).subscribe(
+        data => {
+          console.log("Success! Updated data:\n" + JSON.stringify(data, null, 2))
+          this.budgetForm.reset()
+          this.router.navigate(['/budget'])
+        },
+        error => console.log("Error updating data: " + JSON.stringify(error)) 
+      )
+    } else {
+      this.budgetService.put(updatedData).subscribe(
+        data => {
+          console.log("Success! Updated data:\n" + JSON.stringify(data, null, 2))
+          this.budgetForm.reset()
+          this.router.navigate(['/budget'])
+        },
+        error => console.log("Error updating data: " + JSON.stringify(error)) 
+      )
+    }
   }
 
 }

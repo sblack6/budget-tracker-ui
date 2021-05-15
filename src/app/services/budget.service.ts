@@ -30,7 +30,11 @@ export class BudgetService {
   }
 
   getDefaultBudget() {
-    return this.http.get('/server/api/v1/transactions//default-budget')
+    return this.http.get('/server/api/v1/transactions/default-budget')
+  }
+
+  setDefaultBudget(object: MonthlySpending) {
+    return this.http.post('/server/api/v1/transactions/default-budget', object)
   }
 
   newBudgetFromDefault(date: string, inProgress: boolean): Observable<any> {
