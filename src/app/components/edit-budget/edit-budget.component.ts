@@ -108,14 +108,24 @@ export class EditBudgetComponent implements OnInit {
 
   makeBudgetDefault() {
     this.budgetService.getDefaultBudget().subscribe(data => {
-        this.budgetData = {
-          ...data,
-          date: this.date,
-          default: false,
-          inProgress: this.budgetData.inProgress
+      if (data == null || data == undefined) {
+        data = [];
+      }
+      BUDGET_NUMERIC_ENTRIES.forEach(entry => {
+        if (!Object.keys(data).includes(entry.field)) {
+          data[entry.field] = 0;
         }
-        this.initForm()
-        this.budgetForm.markAsDirty()
+      });
+      this.budgetData = {
+        ...data,
+        date: this.date,
+        default: false,
+        inProgress: this.budgetData.inProgress,
+        id: this.budgetData.id,
+      }
+        
+      this.initForm()
+      this.budgetForm.markAsDirty()
     })
   }
 
